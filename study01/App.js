@@ -60,3 +60,44 @@ for(i=0; i< 5; i++) {
 
 console.log(i);
 
+// data => json
+
+// {key:value}
+
+const test = {
+    a1: a,
+    b1: 2,
+    c1: "삼"
+}
+
+console.log( test.a );
+
+var { b1:bb, c1 } = test;
+console.log(bb, c1);
+
+var test2 = test;
+var test3 = {...test};
+
+console.log(test, test2, test3);
+
+test.e1 = false;
+test2.b1 = 5;
+test3.d1 = true;
+var test4 = {...test, ...test2, ...test3}
+
+console.log(test, test2, test3);
+console.log(test4);
+
+function fn_1() {
+    console.log("출력해줄게!!");
+}
+
+function fn_2(f) {
+    f();
+}
+
+fn_2(fn_1);
+
+fn_2(function() {console.log("난 출력하는 걸~")});
+
+fn_2(()=>console.log("점심 시간인걸?"));
