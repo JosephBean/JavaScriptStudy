@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>문제</title>
+    <style>
+        * {box-sizing: border-box;}
+        body {margin: 0;}
+        section {margin: 0 100px;}
+        #box {width: 500px; display: grid; grid-template-columns: auto auto auto auto auto auto auto auto auto auto; margin: 0 calc(50% - 250px);}
+        #box div {height: 50px; border: 1px solid #000;}
+    </style>
+    <script>
+        function q1() {
+            var dan = Number( document.querySelector("#dan").value );
+            var html = '';
+            for(let i = 1; i <= 9; i++) {
+                html += `<li>${dan} * ${i} = ${dan * i}</li>`
+            }
+            document.querySelector("#gugudan").innerHTML = html;
+        }
+
+        window.onload = function() {
+            var html = "";
+            for(var i = 0; i < 100; i++) {
+                html += "<div class='box'></div>"
+            }
+            document.querySelector("#box").innerHTML = html;
+            let idx = 0;
+            document.querySelectorAll(".box")[idx].style.backgroundColor = '#000';
+            
+            window.addEventListener("keydown", (e) => {
+                document.querySelectorAll(".box")[idx].style.backgroundColor = '#fff';
+                if( e.key === "ArrowUp") {
+                    console.log("위");
+                    if(idx < 10) {
+                        idx = idx + 90;
+                    } else {
+                        idx = idx - 10;
+                    }
+                }
+                if( e.key === "ArrowDown") {
+                    console.log("아래");
+                    if(idx > 89) {
+                        idx = idx - 90;
+                    } else {
+                        idx = idx + 10;
+                    }
+                }
+                if( e.key === "ArrowRight") {
+                    console.log("오른쪽");
+                    if(idx === 99) {
+                        idx = 0;
+                    } else {
+                        idx = idx + 1;
+                    }
+                }
+                if( e.key === "ArrowLeft") {
+                    console.log("왼쪽");
+                    if(idx === 0) {
+                        idx = 99;
+                    } else {
+                        idx = idx - 1;
+                    }
+                }
+                document.querySelectorAll(".box")[idx].style.backgroundColor = '#000';
+            });
+        }
+    </script>
+</head>
+<body>
+    <section>
+        <h1>문제1</h1>
+        <p>"input" 을 이용하여 숫자를 받아서 "button"를 클릭 시 해당 숫자의 값을 단으로 인식하여 구구단 출력이 되도록 하시오.</p>
+        <input type="number" id="dan" placeholder="단을 입력하세요." />
+        <button type="button" onclick="q1()">출력</button>
+        <br>
+        <ol id="gugudan"></ol>
+    </section>
+    <hr>
+    <section>
+        <h1>문제2</h1>
+        <p>"10 * 10" 칸으로 이루어진 격자의 공간에서 "키보드 방향 키"를 입력 받으면 (1,1) 시작에서 이동하는 이벤트를 구현 하시오.</p>
+        <div id="box"></div>
+    </section>
+</body>
+</html>
